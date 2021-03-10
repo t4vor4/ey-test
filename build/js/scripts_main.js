@@ -8,7 +8,12 @@ class GeneralFunctions {
                 .then(resp => resp.json())
                 .then(resp => listaDeItens = resp)
                 .then(resp => localStorage.setItem('listItens', JSON.stringify(resp)))
-                .then( () => this.init() );
+                .then( () => this.init() )
+                .catch(function(error) {
+                    listaDeItens = [];
+                    localStorage.setItem('listItens', JSON.stringify(listaDeItens));
+                    document.querySelector('.list').innerHTML = '<h1 class="empty_info">Não há dados cadastrados</h1>';
+                });
         } else {
             this.init();
         }
@@ -287,29 +292,35 @@ class GeneralFunctions {
         window.localStorage.editItem = '';
 
         const lista = JSON.parse(localStorage.getItem('listItens'));
-        
-        const sectionList = document.querySelector('.list');
 
-        const listaHtml = list => {
-            let $txt = '';
+        if (!lista.length) {
+            document.querySelector('.list').innerHTML = '<h1 class="empty_info">Não há dados cadastrados</h1>'
+        } else {
 
-            for (let i = 0; i < list.length; i++) {
-                const el = list[i];
-                $txt += `<li class="list__item" data-index="${i}">
-                    <span class="btn--delete">+</span>
-                    <div class="list__item__content">
-                    <h3 class="list__item__name">${el.name}</h3>
-                    <p class="list__item__email">${el.email}</p>
-                    <small class="list__item__cpf"><strong>CPF:</strong> ${this.simpleMask(el.cpf, 'cpf')}</small> | 
-                    <small class="list__item__telefone"><strong>Tel:</strong> ${this.simpleMask(el.phone, 'phone')}</small>
-                    </div>
-                </li>`;
+            const sectionList = document.querySelector('.list');
+
+            const listaHtml = list => {
+                let $txt = '';
+
+                for (let i = 0; i < list.length; i++) {
+                    const el = list[i];
+                    $txt += `<li class="list__item" data-index="${i}">
+                        <span class="btn--delete">+</span>
+                        <div class="list__item__content">
+                        <h3 class="list__item__name">${el.name}</h3>
+                        <p class="list__item__email">${el.email}</p>
+                        <small class="list__item__cpf"><strong>CPF:</strong> ${this.simpleMask(el.cpf, 'cpf')}</small> | 
+                        <small class="list__item__telefone"><strong>Tel:</strong> ${this.simpleMask(el.phone, 'phone')}</small>
+                        </div>
+                    </li>`;
+                }
+
+                return $txt;
             }
 
-            return $txt;
-        }
+            sectionList.innerHTML = listaHtml(lista);
 
-        sectionList.innerHTML = listaHtml(lista);
+        }
 
         this.deleteItem();
         this.editItem();

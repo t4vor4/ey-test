@@ -68,6 +68,10 @@ $btnHover: .7;
         font-size: 2rem;
         color: $inputFocusFontColor;
         font-weight: 300;
+        &.empty_info {
+            text-align: center;
+            color: $gray;
+        }
     }
 
     .form {
