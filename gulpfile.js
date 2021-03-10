@@ -38,10 +38,6 @@ const watchReloadCss = _ =>  watch(path.src+'/**/*.scss').on("change", browserSy
 
 const watchHtml = _ =>  watch('./index.html', bsReload);
 
-const bSync = _ => browserSync.init({injectChanges: true, proxy: "http://localhost:8080/"}); // colocar a url correta aqui.
-
 const bSyncServer = _ => browserSync.init( { server: { baseDir: "./" }} );
 
-
-exports.default = series(compileSass, javascriptBuild, parallel( watchHtml, watchSass, watchJs, watchReloadCss, watchReloadJs, watchReloadJson, bSync) );
 exports.local = series(compileSass, javascriptBuild, parallel( watchHtml, watchSass, watchJs, watchReloadCss, watchReloadJs, watchReloadJson, bSyncServer) );

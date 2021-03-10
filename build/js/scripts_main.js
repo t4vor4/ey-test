@@ -16,7 +16,7 @@ class GeneralFunctions {
 
     }
     init() {
-        if (window.location.pathname !== '/formPage.html') {
+        if (window.location.href.indexOf('/formPage.html') === -1) {
             this.showLista();
         } else {
             if (window.localStorage.editItem) {
@@ -197,7 +197,7 @@ class GeneralFunctions {
             if (!document.querySelectorAll('.warning').length) {
                 const $editItem = window.localStorage.editItem && JSON.parse(window.localStorage.editItem);
                 
-                const $arr = JSON.parse(window.localStorage.listItens);
+                const $arr = this.getList();
                 
                 if ($editItem) {
                     $arr[$editItem.index] = person;
@@ -212,13 +212,15 @@ class GeneralFunctions {
                 btnCadastrar.classList.add('hide');
 
                 setTimeout(() => {
-                    
-                    window.location.href = '/';    
+                    window.location.href = './';    
                 }, 1500);
                 
             }
 
         });
+    }
+    getList() {
+        return JSON.parse(window.localStorage.listItens);
     }
     inputBehavior() {
         var inputs = document.querySelectorAll('.form__input');
@@ -277,7 +279,7 @@ class GeneralFunctions {
                 const $index = $item.getAttribute('data-index');
                 const $strItem = selectItem($index);
                 localStorage.setItem('editItem', $strItem);
-                window.location.href = '/formPage.html';
+                window.location.href = './formPage.html';
             });
         }
     }
@@ -319,7 +321,7 @@ class GeneralFunctions {
             $btn.addEventListener('click', (e) => {
                 const $index = $btn.parentNode.getAttribute('data-index');
                 
-                const $arr = JSON.parse(window.localStorage.listItens);
+                const $arr = this.getList();
 
                 $arr.splice($index, 1);
 
