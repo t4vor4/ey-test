@@ -1,4 +1,5 @@
-export default class Lista {
+
+class GeneralFunctions {
     constructor() {
         
         let listaDeItens = localStorage.getItem('listItens');
@@ -329,4 +330,8 @@ export default class Lista {
             });
         });
     }
+}
+
+window.onload = () => {
+    const generalFunctions = new GeneralFunctions();
 }
