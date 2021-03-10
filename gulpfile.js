@@ -2,11 +2,6 @@ const { src, dest, series, parallel, watch } = require('gulp');
 
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');	
-const browserify = require("browserify");
-const babelify = require("babelify");
-const source = require("vinyl-source-stream");
-const buffer = require("vinyl-buffer");
-const uglify = require("gulp-uglify");
 const cleanCSS = require('gulp-clean-css');
 const browserSync = require('browser-sync').create();
 
@@ -23,28 +18,14 @@ const compileSass = async _ => {
         .pipe(dest(`${path.dest}/css`));
 }
 
-
+// Monta o JS
 const javascriptBuild = async _ => {
-    // Start by calling browserify with our entry pointing to our main javascript file
-    return (
-        browserify({
-            entries: [`${path.src}/js/scripts_main.js`],
-            // Pass babelify as a transform and set its preset to @babel/preset-env
-            transform: [babelify.configure({ presets: ["@babel/preset-env"] })]
-        })
-            .bundle()
-            .pipe(source("script_bundle.js"))
-            // Turn it into a buffer!
-            .pipe(buffer())
-            // And uglify
-            .pipe(uglify())
-            // Then write the resulting files to a folder
-            .pipe(dest(`${path.dest}/js`))
-    );
+    return src(`${path.src}/js/scripts_main.js`)
+    .pipe(dest(`${path.dest}/js`));
 }
 const bsReload = _ => browserSync.reload;
 
-// Observa mudanças no sass
+// Observa mudanças no sass e no JS
 const watchSass = _ =>  watch(path.src+'/**/*.scss', compileSass);
 
 const watchJs = _ =>  watch(path.src+'/**/*.js', javascriptBuild);
