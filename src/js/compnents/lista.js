@@ -109,6 +109,7 @@ export default class Lista {
             $small.classList.add('warning');
             $small.innerText = string;
             target.after($small);
+            target.classList.add('warning');
             return;
         }
 
