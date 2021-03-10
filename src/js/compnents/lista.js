@@ -17,7 +17,6 @@ export default class Lista {
     init() {
         if (window.location.pathname !== '/formPage.html') {
             this.showLista();
-            this.editItem();
         } else {
             if (window.localStorage.editItem) {
                 this.setEdition();
@@ -259,6 +258,7 @@ export default class Lista {
         $inputs.cpf.value = this.simpleMask(itemToEdit.obj.cpf, 'cpf');
         $inputs.phone.value = this.simpleMask(itemToEdit.obj.phone, 'phone');
 
+        document.querySelector('.btn--cadastrar').innerText = 'Salvar';
     }
     editItem() {
         const $itens = document.querySelectorAll('.list__item');
@@ -271,7 +271,7 @@ export default class Lista {
         for (let i = 0; i < $itens.length; i++) {
             const $item = $itens[i];
 
-            $item.addEventListener('click', (e) => {
+            $item.querySelector('.list__item__content').addEventListener('click', (e) => {
                 const $index = $item.getAttribute('data-index');
                 const $strItem = selectItem($index);
                 localStorage.setItem('editItem', $strItem);
@@ -292,10 +292,13 @@ export default class Lista {
             for (let i = 0; i < list.length; i++) {
                 const el = list[i];
                 $txt += `<li class="list__item" data-index="${i}">
+                    <span class="btn--delete">+</span>
+                    <div class="list__item__content">
                     <h3 class="list__item__name">${el.name}</h3>
                     <p class="list__item__email">${el.email}</p>
                     <small class="list__item__cpf"><strong>CPF:</strong> ${this.simpleMask(el.cpf, 'cpf')}</small> | 
                     <small class="list__item__telefone"><strong>Tel:</strong> ${this.simpleMask(el.phone, 'phone')}</small>
+                    </div>
                 </li>`;
             }
 
@@ -303,5 +306,26 @@ export default class Lista {
         }
 
         sectionList.innerHTML = listaHtml(lista);
+
+        this.deleteItem();
+        this.editItem();
+    }
+    deleteItem() {
+        const delBtns = document.querySelectorAll('.btn--delete');
+
+        delBtns.forEach($btn => {
+            $btn.addEventListener('click', (e) => {
+                const $index = $btn.parentNode.getAttribute('data-index');
+                
+                const $arr = JSON.parse(window.localStorage.listItens);
+
+                $arr.splice($index, 1);
+
+                window.localStorage.listItens = JSON.stringify($arr);
+
+                this.showLista();
+
+            });
+        });
     }
 }

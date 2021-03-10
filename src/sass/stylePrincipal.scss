@@ -51,6 +51,7 @@ $btnHover: .7;
             background-color: rgba($blue, .1);
             margin-bottom: $gutter;
             border-radius: 15px;
+            position: relative;
 
             &__name {
                 margin: 0;
@@ -135,6 +136,24 @@ $btnHover: .7;
     }
     &--loader {
         height: 67px;
+    }
+    &--delete {
+        float: right;
+        position: absolute;
+        right: $gutter;
+        top: $gutter;
+        color: $red;
+        background-color: $white;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        border-radius: 100%;
+        transform: rotate(45deg);
+        cursor: pointer;
     }
 
     &.hide {
