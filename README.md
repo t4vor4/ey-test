@@ -3,7 +3,7 @@
 
 ## Getting started
 
-You can see the app running at the link: [https://github.com/t4vor4/ambientedeprojeto](https://github.com/t4vor4/ambientedeprojeto)
+You can see the app running at the link: [https://t4vor4.github.io/ey-test/](https://t4vor4.github.io/ey-test/).
 
 
 The app consist in show a list of person and you can edit, add or delete the persons in the list.
