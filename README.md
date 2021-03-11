@@ -23,7 +23,7 @@ To test this app in your computer you need install all dependencies with npm:
 
 ```shell
 git clone https://github.com/t4vor4/ey-test.git
-cd testeEasy/
+cd ey-test/
 npm install
 ```
 
