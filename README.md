@@ -3,11 +3,8 @@
 
 ## Getting started
 
-You can see the app running at the link:
+You can see the app running at the link: [https://github.com/t4vor4/ambientedeprojeto](https://github.com/t4vor4/ambientedeprojeto)
 
-```shell
-[https://github.com/t4vor4/ambientedeprojeto](https://github.com/t4vor4/ambientedeprojeto)
-```
 
 The app consist in show a list of person and you can edit, add or delete the persons in the list.
 
