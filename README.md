@@ -1,20 +1,33 @@
-# Meu ambiente de projetos
+# Front-End test EY 
+> Developed by Easynvest fornt-end challenge rules
 
-***Ambiente desenvolvido para iniciar os projetos o mais rápido possivel, usando Sass e Js6.***
+## Getting started
+
+You can see the app running at the link:
+
+```shell
+[https://github.com/t4vor4/ambientedeprojeto](https://github.com/t4vor4/ambientedeprojeto)
+```
+
+The app consist in show a list of person and you can edit, add or delete the persons in the list.
+
+## Developing
+
+### Built With
+HTML, CSS, JS6, Gulp, Sass and Browsersync.
+
+### Prerequisites
+You will need at least NodeJs v10 to test this app.
 
 
-Link:[ambientedeprojeto](https://github.com/t4vor4/ambientedeprojeto)
+### Setting up Dev
 
-## Este ambiente utiliza:
+To test this app in your computer you need install all dependencies with npm:
 
- - ***Sass***: para montar o css bem bonito;
-- **Babel**: para trabalhar com JS6 sem ter dor de cabeça;
-- **Browserify**: para utilizar módulos enquanto trabalha com o JS6. 
-- **BrowserSync**: porque ficar apertando F5 se alguém pode fazer isso pra mim?
-- ***Gulp***: Para automatizar tudo.
+```shell
+git clone https://github.com/t4vor4/ey-test.git
+cd testeEasy/
+npm install
+```
 
-## Instalar:
-Se você ainda não tem, é necessário instalar o [Node.js](https://nodejs.org/en/download/). Já com o Node,js instalado, faça o download desse projeto ou clone este repositório. 
-
-## Como usar?
-Depois de instalado, use o terminal de sua escolha, entre na pasta do projeto (onde você instalou esse repositório, no caso...) e rode o comando: "npm run dev".
+Then, put in the terminal ***npm run dev*** to run a local server. 
